@@ -143,6 +143,13 @@ function toggle_cargo_door()
 	end
 end
 
+function autopilot()
+	if not variables.ap then
+		variables.ap = not variables.ap
+		variables.sp = true
+	end
+end
+
 function settings_input()
 	if variables.m.pressed == false then
 		variables.sp = false	
@@ -210,6 +217,8 @@ function read_vars()
 	else
 		buttons[3][2][5] = {255, 0, 0, 255}
 	end
+	
+	buttons[3][3][5] = c(9) and {0, 255, 0, 255} or {255, 0, 0, 255}
 end
 
 function write_vars()
@@ -220,6 +229,7 @@ function write_vars()
 	c(3, variables.marks[1].active)
 	c(4, variables.ah)
 	c(5, variables.cd)
+	c(8, variables.ap)
 end
 
 
@@ -237,7 +247,8 @@ buttons = {
     {}, -- HORIZON
     {
     	{create_box(2, 20, 80, 10), "AutoHoover", toggle_autohoover, {}, {255, 0, 0, 255}},
-		{create_box(2, 30, 100, 10), "CargoDoor", toggle_cargo_door, {}, {255, 0, 0, 255}}
+		{create_box(2, 30, 100, 10), "CargoDoor", toggle_cargo_door, {}, {255, 0, 0, 255}},
+		{create_box(2, 40, 100, 10), "Autopilot", autopilot, {}, {255, 0, 0, 255}}
     }, -- SETTINGS
 }
 
